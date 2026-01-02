@@ -1,0 +1,3425 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "인증 서버",
+    "description": "인증 서버",
+    "version": "2025/12/22 14:33:01 KST"
+  },
+  "servers": [
+    {
+      "url": "https://api.moon.supremainc.com/dev"
+    }
+  ],
+  "tags": [],
+  "paths": {
+    "/v1/accounts": {
+      "get": {
+        "tags": [
+          "계정 관리"
+        ],
+        "summary": "계정 정보 조회",
+        "description": "[ACCOUNT] 자신의 계정 정보를 조회한다.",
+        "operationId": "account-info-controller-test/check_get-account-info",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "JWT AccessToken",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0dGMiOiJhYyIsImR0YyI6Im1hIiwiZXhwIjoxNzYzMzQ4MTQyLCJyaWMiOjMsImlhdCI6MTc2MzM0NDU0Mn0.rIiljWtaRLaBr42aWP7iBG07ubNJ2COd6DOiUJtknrs"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-accounts-1602414328"
+                },
+                "examples": {
+                  "account-info-controller-test/check_get-account-info": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK",
+                      "data": {
+                        "accountId": 3,
+                        "accountType": "BUSINESS_OWNER",
+                        "accountStatus": "ACTIVE",
+                        "name": "diaz",
+                        "countryCode": "kr",
+                        "phone": "01012341234",
+                        "portraitSignedURL": "https://account.profile.image"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuthJWT": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "계정 관리"
+        ],
+        "summary": "계정 정보 수정",
+        "description": "[ACCOUNT] 자신의 계정 이름 및 프로필 사진을 수정한다.",
+        "operationId": "account-modify-controller-test/check_modify-account-info",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "JWT AccessToken",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0dGMiOiJhYyIsImR0YyI6Im1hIiwiZXhwIjoxNzYzMzQ4MTQxLCJyaWMiOjIsImlhdCI6MTc2MzM0NDU0MX0.yK5jAlT6ZMmwSEq-1eA39OupbWHjCUCqcBrBjPEAA4Y"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api-v1-accounts-684836338"
+              },
+              "examples": {
+                "account-modify-controller-test/check_modify-account-info": {
+                  "value": {
+                    "name": "멋진 진홍이",
+                    "portraitBase64": "iVBORw0KGgoAAAANSUhEUgAAAQAAAAEAAQMAAABmvDolAAAAA1BMVEW10NBjBBbqAAAAH0lEQVRoge3BAQ0AAADCoPdPbQ43oAAAAAAAAAAAvg0hAAABmmDh1QAAAABJRU5ErkJggg=="
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-accounts-343020678"
+                },
+                "examples": {
+                  "account-modify-controller-test/check_modify-account-info": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK",
+                      "data": {
+                        "accountId": 2,
+                        "accountType": "BUSINESS_OWNER",
+                        "accountStatus": "ACTIVE",
+                        "countryCode": "kr",
+                        "phone": "01012341234",
+                        "name": "멋진 진홍이",
+                        "portraitSignedURL": "https://account.profile.image"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuthJWT": []
+          }
+        ]
+      }
+    },
+    "/v1/accounts/access-token": {
+      "post": {
+        "tags": [
+          "계정 인증"
+        ],
+        "summary": "Access Token 갱신",
+        "description": "Refresh Token을 이용하여 Access Token을 갱신한다.",
+        "operationId": "account-token-controller-test/check_get-access-token-by-refresh-token",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api-v1-accounts-refresh-token351339704"
+              },
+              "examples": {
+                "account-token-controller-test/check_get-access-token-by-refresh-token": {
+                  "value": {
+                    "refreshToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0dGMiOiJyZSIsImR0YyI6Im1hIiwiZXhwIjoxNzk0ODgwNTQwLCJyaWMiOjEyLCJpYXQiOjE3NjMzNDQ1NDB9.zINnwxdKyB2g6UdH7u5UBhbRZetrCWqEAZaMRTmQ6WM"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-accounts-access-token-875527569"
+                },
+                "examples": {
+                  "account-token-controller-test/check_get-access-token-by-refresh-token": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK",
+                      "data": {
+                        "accessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0dGMiOiJhYyIsImR0YyI6Im1hIiwiZXhwIjoxNzYzMzQ4MTQwLCJyaWMiOjEyLCJpYXQiOjE3NjMzNDQ1NDB9.o0nELMsdt4r0TpHFsQoYqjC5JxQAxtoTj8XAXrlAFOI"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/accounts/login/email": {
+      "post": {
+        "tags": [
+          "계정 인증"
+        ],
+        "summary": "이메일로 로그인",
+        "operationId": "account-login-controller-test/check_login-by-email",
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "클라이언트 선호 언어",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "ko-KR"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/internal-v1-accounts-login-email835046085"
+              },
+              "examples": {
+                "account-login-controller-test/check_login-by-email": {
+                  "value": {
+                    "email": "business_provider@test.co.kr",
+                    "password": "Password@1234!",
+                    "authDeviceType": "WEB_BROWSER"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/internal-v1-accounts-login-email1979003640"
+                },
+                "examples": {
+                  "account-login-controller-test/check_login-by-email": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK",
+                      "data": {
+                        "accountId": 4,
+                        "accountType": "BUSINESS_PROVIDER",
+                        "accountStatus": "ACTIVE",
+                        "name": "diaz",
+                        "countryCode": "kr",
+                        "email": "business_provider@test.co.kr",
+                        "twoFactor": {
+                          "methodType": "EMAIL",
+                          "resendToken": "aa094e40dabe47ccade1739a3e333f17",
+                          "resendTokenRemainCount": 5,
+                          "expiredAt": 1763344837104
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/accounts/login/phone": {
+      "post": {
+        "tags": [
+          "api",
+          "계정 인증"
+        ],
+        "summary": "휴대전화 번호로 로그인",
+        "operationId": "account-login-controller-test/check_loginenum-field-controller-test/test-enum-field-validation",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api-v1-accounts-login-phone-1614753494"
+              },
+              "examples": {
+                "enum-field-controller-test/test-enum-field-validation": {
+                  "value": {
+                    "countryCode": "kr",
+                    "phone": "01012341234",
+                    "password": "Password@1234!",
+                    "authDeviceType": "1"
+                  }
+                },
+                "account-login-controller-test/check_login": {
+                  "value": {
+                    "countryCode": "kr",
+                    "phone": "01012341234",
+                    "password": "Password@1234!",
+                    "authDeviceType": "MOBILE_APP"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-accounts-login-phone486549215"
+                },
+                "examples": {
+                  "enum-field-controller-test/test-enum-field-validation": {
+                    "value": {
+                      "errors": [
+                        {
+                          "code": "e1003",
+                          "message": "Invalid Request",
+                          "details": [
+                            {
+                              "message": "1 is not valid for type com.suprema.clue.account.type.AuthDeviceType",
+                              "field": "authDeviceType",
+                              "rejectedValue": "1"
+                            }
+                          ],
+                          "referedUrl": "/api/v1/accounts/login/phone"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-accounts-login-phone925443601"
+                },
+                "examples": {
+                  "account-login-controller-test/check_login": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK",
+                      "data": {
+                        "accountId": 2,
+                        "accountType": "BUSINESS_OWNER",
+                        "accountStatus": "ACTIVE",
+                        "name": "diaz",
+                        "countryCode": "kr",
+                        "phone": "01012341234",
+                        "accessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0dGMiOiJhYyIsImR0YyI6Im1hIiwiZXhwIjoxNzYzMzQ4MTM2LCJyaWMiOjIsImlhdCI6MTc2MzM0NDUzNn0.MEMZlm_rsM609zCLn23BPpyp6EuLejj_mLlVkUX0pp0",
+                        "refreshToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0dGMiOiJyZSIsImR0YyI6Im1hIiwiZXhwIjoxNzk0ODgwNTM2LCJyaWMiOjIsImlhdCI6MTc2MzM0NDUzNn0.v3dc-EvRprtJsM2n7viVJYsoP4Nh2fBjIunmKDLgziQ",
+                        "useAcService": false,
+                        "useVisitorService": false,
+                        "isSuperAdmin": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/accounts/login/two-factor": {
+      "post": {
+        "tags": [
+          "계정 인증"
+        ],
+        "summary": "2FA 로그인",
+        "operationId": "account-login-controller-test/business-provider_2fa_로그인",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api-v1-accounts-login-two-factor-52711364"
+              },
+              "examples": {
+                "account-login-controller-test/business-provider_2fa_로그인": {
+                  "value": {
+                    "email": "business_provider@test.co.kr",
+                    "twoFactor": "702030",
+                    "authDeviceType": "WEB_BROWSER"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-accounts-login-two-factor-865942192"
+                },
+                "examples": {
+                  "account-login-controller-test/business-provider_2fa_로그인": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK",
+                      "data": {
+                        "accountId": 1,
+                        "accountType": "BUSINESS_PROVIDER",
+                        "accountStatus": "ACTIVE",
+                        "name": "diaz",
+                        "countryCode": "kr",
+                        "email": "business_provider@test.co.kr",
+                        "accessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0dGMiOiJhYyIsImR0YyI6IndiIiwiZXhwIjoxNzYzMzQ4MTM2LCJyaWMiOjEsImlhdCI6MTc2MzM0NDUzNn0.YNVRfSJLPIWc1xDGLPpA_rPenjdE6SKB6rFQ4eRPBdg",
+                        "refreshToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0dGMiOiJyZSIsImR0YyI6IndiIiwiZXhwIjoxNzYzNDMwOTM2LCJyaWMiOjEsImlhdCI6MTc2MzM0NDUzNn0.qUNJyJZ6kAC3hHK5xYGaJG4t2gGrhU0yg0IDjG4GEnc",
+                        "useAcService": false,
+                        "useVisitorService": false,
+                        "isSuperAdmin": false
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/accounts/login/two-factor-resend": {
+      "post": {
+        "tags": [
+          "계정 인증"
+        ],
+        "summary": "2FA 재전송",
+        "operationId": "account-login-controller-test/business-provider_2fa_토큰_재전송",
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "클라이언트 선호 언어",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "ko-KR"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api-v1-accounts-login-two-factor-resend-465472078"
+              },
+              "examples": {
+                "account-login-controller-test/business-provider_2fa_토큰_재전송": {
+                  "value": {
+                    "resendToken": "373f90420b154914bd376de4ac991140"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-accounts-login-two-factor-resend-1473179133"
+                },
+                "examples": {
+                  "account-login-controller-test/business-provider_2fa_토큰_재전송": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK",
+                      "data": {
+                        "resendTokenRemainCount": 4,
+                        "expiredAt": 1763344836855
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/accounts/logout": {
+      "post": {
+        "tags": [
+          "계정 인증"
+        ],
+        "summary": "로그아웃",
+        "description": "TODO: 제대로 동작하지 않음.",
+        "operationId": "account-logout-controller-test/check_logout",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api-v1-accounts-logout-1239411016"
+              },
+              "examples": {
+                "account-logout-controller-test/check_logout": {
+                  "value": {
+                    "refreshToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0dGMiOiJyZSIsImR0YyI6Im1hIiwiZXhwIjoxNzk0ODgwNTQ0LCJyaWMiOjEzLCJpYXQiOjE3NjMzNDQ1NDR9.RkcYXjgYMj6mvte5FNRng-ogzxV9pTjC7QkCNWsPEbY"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-sp-template-email-1926437492"
+                },
+                "examples": {
+                  "account-logout-controller-test/check_logout": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/accounts/passwords/reset": {
+      "post": {
+        "tags": [
+          "계정 패스워드"
+        ],
+        "summary": "패스워드 초기화",
+        "description": "패스워드 초기화 토큰을 이용하여 새로운 패스워드로 변경한다.",
+        "operationId": "account-password-controller-test/check_reset-password",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api-v1-accounts-passwords-reset-569634005"
+              },
+              "examples": {
+                "account-password-controller-test/check_reset-password": {
+                  "value": {
+                    "countryCode": "jp",
+                    "phone": "01012341234",
+                    "email": null,
+                    "resetToken": "c7ab9ce8aed24712a5e667a9b0b1246a",
+                    "newPassword": "newPasswordPassword@1234!"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-sp-template-email-1926437492"
+                },
+                "examples": {
+                  "account-password-controller-test/check_reset-password": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/accounts/passwords/reset-code": {
+      "post": {
+        "tags": [
+          "계정 패스워드"
+        ],
+        "summary": "패스워드 초기화 인증코드",
+        "description": "핸드폰 번호로 패스워드 초기화하기 위한 인증 코드를 문자로 전송한다.<br>단, DEV/STAGE 환경에서는 팀즈로 전송한다.",
+        "operationId": "account-password-controller-test/check_send-password-reset-auth-code",
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "ko_KR",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "ko_KR"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api-v1-accounts-passwords-reset-code941861478"
+              },
+              "examples": {
+                "account-password-controller-test/check_send-password-reset-auth-code": {
+                  "value": {
+                    "countryCode": "jp",
+                    "phone": "01012341234",
+                    "email": null
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-sp-template-email-1926437492"
+                },
+                "examples": {
+                  "account-password-controller-test/check_send-password-reset-auth-code": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/accounts/passwords/reset-token": {
+      "post": {
+        "tags": [
+          "계정 패스워드"
+        ],
+        "summary": "패스워드 초기화 토큰 확인",
+        "description": "핸드폰으로 전송된 인증 코드를 검증하여, 패스워드를 변경하기 위한 토큰을 발급받는다.",
+        "operationId": "account-password-controller-test/check_generate-password-reset-token",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api-v1-accounts-passwords-reset-token291965063"
+              },
+              "examples": {
+                "account-password-controller-test/check_generate-password-reset-token": {
+                  "value": {
+                    "countryCode": "jp",
+                    "phone": "01012341234",
+                    "email": null,
+                    "authCode": "118057"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-accounts-passwords-reset-token96683145"
+                },
+                "examples": {
+                  "account-password-controller-test/check_generate-password-reset-token": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK",
+                      "data": {
+                        "countryCode": "jp",
+                        "phone": "01012341234",
+                        "accountType": "BUSINESS_OWNER",
+                        "accountStatus": "ACTIVE",
+                        "passwordResetToken": "1592ed26e05f4c78afc2b0626e45f42f"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/accounts/passwords/send-token": {
+      "post": {
+        "tags": [
+          "계정 패스워드"
+        ],
+        "summary": "패스워드 초기화 링크 전송",
+        "description": "이메일로 패스워드 초기화하기 위한 링크를 전송한다.<br>단, DEV/STAGE 환경에서는 팀즈로 전송한다.",
+        "operationId": "account-password-controller-test/check_send-password-reset-link-by-email",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api-v1-accounts-passwords-send-token-272417006"
+              },
+              "examples": {
+                "account-password-controller-test/check_send-password-reset-link-by-email": {
+                  "value": {
+                    "email": "tester-scloud@scloud.com"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-sp-template-email-1926437492"
+                },
+                "examples": {
+                  "account-password-controller-test/check_send-password-reset-link-by-email": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/accounts/passwords/token-valid": {
+      "post": {
+        "tags": [
+          "계정 패스워드"
+        ],
+        "summary": "패스워드 초기화 토큰 검증",
+        "description": "이메일로 발송된 토큰이 유효한지 검증한다. 토큰의 만료 기한은 발급일로 부터 1주일이다.<br>토큰이 존재하지 않거나, 시간이 만료됐거나, 권한이 없는 경우 false를 반환한다.",
+        "operationId": "account-password-controller-test/check_is-validate-password-reset-token-and-email",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api-v1-accounts-passwords-token-valid-997857266"
+              },
+              "examples": {
+                "account-password-controller-test/check_is-validate-password-reset-token-and-email": {
+                  "value": {
+                    "email": "tester-scloud@scloud.com",
+                    "token": "00a2feecbfa04378b8ba5097fa329c3d"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-accounts-passwords-token-valid1917597168"
+                },
+                "examples": {
+                  "account-password-controller-test/check_is-validate-password-reset-token-and-email": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK",
+                      "data": {
+                        "result": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/accounts/passwords/update": {
+      "post": {
+        "tags": [
+          "계정 패스워드"
+        ],
+        "summary": "패스워드 변경",
+        "description": "[ACCOUNT] 자신의 계정 패스워드를 변경한다.",
+        "operationId": "account-password-controller-test/check_update-password",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "JWT AccessToken",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0dGMiOiJhYyIsImR0YyI6Im1hIiwiZXhwIjoxNzYzMzQ4MTM3LCJyaWMiOjcsImlhdCI6MTc2MzM0NDUzN30.HtV7K37m4fx2zzib2aMIYs8qukCivPVytYRL3yqGgWU"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api-v1-accounts-passwords-update-1962078045"
+              },
+              "examples": {
+                "account-password-controller-test/check_update-password": {
+                  "value": {
+                    "currentPassword": "Password@1234!",
+                    "newPassword": "newPasswordPassword@1234!"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-sp-template-email-1926437492"
+                },
+                "examples": {
+                  "account-password-controller-test/check_update-password": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuthJWT": []
+          }
+        ]
+      }
+    },
+    "/v1/accounts/portrait": {
+      "delete": {
+        "tags": [
+          "계정 관리"
+        ],
+        "summary": "계정 프로필 사진 삭제",
+        "description": "[ACCOUNT] 자신의 계정 프로필 사진을 삭제한다.",
+        "operationId": "account-modify-controller-test/check_delete-account-portrait",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "JWT AccessToken",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0dGMiOiJhYyIsImR0YyI6Im1hIiwiZXhwIjoxNzYzMzQ4MTQxLCJyaWMiOjEsImlhdCI6MTc2MzM0NDU0MX0.vsZrn6p1kjdIJK-LDFiNf794hBLHQ6uco5QjXsUVh3c"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-sp-template-email-1926437492"
+                },
+                "examples": {
+                  "account-modify-controller-test/check_delete-account-portrait": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuthJWT": []
+          }
+        ]
+      }
+    },
+    "/v1/accounts/refresh-token": {
+      "post": {
+        "tags": [
+          "계정 인증"
+        ],
+        "summary": "Refresh Token 갱신",
+        "description": "Refresh Token을 이용하여 Refresh Token을 갱신한다.",
+        "operationId": "account-token-controller-test/check_refresh-refresh-token",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api-v1-accounts-refresh-token351339704"
+              },
+              "examples": {
+                "account-token-controller-test/check_refresh-refresh-token": {
+                  "value": {
+                    "refreshToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0dGMiOiJyZSIsImR0YyI6Im1hIiwiZXhwIjoxNzk0ODgwNTQwLCJyaWMiOjExLCJpYXQiOjE3NjMzNDQ1NDB9.KGlpp13ZCEUnh1ww27oD25iknQsobzLN-Fi-cIXUW3Q"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-accounts-refresh-token1152053861"
+                },
+                "examples": {
+                  "account-token-controller-test/check_refresh-refresh-token": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK",
+                      "data": {
+                        "refreshToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0dGMiOiJyZSIsImR0YyI6Im1hIiwiZXhwIjoxNzk0ODgwNTQwLCJyaWMiOjExLCJpYXQiOjE3NjMzNDQ1NDB9.KGlpp13ZCEUnh1ww27oD25iknQsobzLN-Fi-cIXUW3Q"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/accounts/register": {
+      "post": {
+        "tags": [
+          "계정 등록"
+        ],
+        "summary": "계정 등록",
+        "description": "회원 가입 토큰을 이용하여 계정을 등록한다.",
+        "operationId": "account-register-controller-test/check_register",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api-v1-accounts-register1571577011"
+              },
+              "examples": {
+                "account-register-controller-test/check_register": {
+                  "value": {
+                    "name": "diaz",
+                    "password": "Passwrod1234+@!-",
+                    "termsAgree": true,
+                    "registerToken": "fb18a22129b743a9a3c89ae8e9189537"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-accounts-register-323336239"
+                },
+                "examples": {
+                  "account-register-controller-test/check_register": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK",
+                      "data": {
+                        "accountId": 1,
+                        "accountType": "BUSINESS_OWNER",
+                        "accountStatus": "ACTIVE",
+                        "name": "diaz",
+                        "countryCode": "kr",
+                        "phone": "01012341234"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/accounts/remove": {
+      "post": {
+        "tags": [
+          "계정 삭제"
+        ],
+        "summary": "계정 삭제",
+        "description": "[ACCOUNT] 회원 탈퇴를 한다.",
+        "operationId": "account-delete-controller-test/check_delete-account-info",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "JWT AccessToken",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0dGMiOiJhYyIsImR0YyI6Im1hIiwiZXhwIjoxNzYzMzQ4MTQzLCJyaWMiOjEsImlhdCI6MTc2MzM0NDU0M30.IT537j2Qt8NvkA6tbNHIvCDxKLe3R2ZaY7ZPHrEqQzY"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api-v1-accounts-remove-749703150"
+              },
+              "examples": {
+                "account-delete-controller-test/check_delete-account-info": {
+                  "value": {
+                    "reasonType": "ETC",
+                    "detail": "delete me"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-sp-template-email-1926437492"
+                },
+                "examples": {
+                  "account-delete-controller-test/check_delete-account-info": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuthJWT": []
+          }
+        ]
+      }
+    },
+    "/v1/accounts/verify": {
+      "post": {
+        "tags": [
+          "계정 등록"
+        ],
+        "summary": "회원 가입 인증 코드 요청",
+        "description": "이메일로로 회원 가입을 위한 인증 코드를 요청한다.",
+        "operationId": "account-register-controller-test/check_send-verify-code-by-",
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "in": "header",
+            "description": "ko_KR",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "ko_KR"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api-v1-accounts-verify-1362517851"
+              },
+              "examples": {
+                "account-register-controller-test/check_send-verify-code-by-email": {
+                  "value": {
+                    "countryCode": null,
+                    "phone": null,
+                    "email": "scloud-tester@scloud-suprema.co.kr",
+                    "accountType": "BUSINESS_OWNER"
+                  }
+                },
+                "account-register-controller-test/check_send-verify-code-by-phone": {
+                  "value": {
+                    "countryCode": "kr",
+                    "phone": "01012341234",
+                    "email": null,
+                    "accountType": "BUSINESS_OWNER"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-sp-template-email-1926437492"
+                },
+                "examples": {
+                  "account-register-controller-test/check_send-verify-code-by-email": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK"
+                    }
+                  },
+                  "account-register-controller-test/check_send-verify-code-by-phone": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/accounts/verify-code": {
+      "post": {
+        "tags": [
+          "계정 등록"
+        ],
+        "summary": "회원 가입 인증 코드 검증",
+        "description": "회원 가입 인증 코드를 검증하여 회원 가입 토큰을 발급받는다.",
+        "operationId": "account-register-controller-test/check_verify-code",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api-v1-accounts-passwords-reset-token291965063"
+              },
+              "examples": {
+                "account-register-controller-test/check_verify-code": {
+                  "value": {
+                    "countryCode": "kr",
+                    "phone": "01012341234",
+                    "email": null,
+                    "authCode": "598722"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-accounts-verify-code1076241530"
+                },
+                "examples": {
+                  "account-register-controller-test/check_verify-code": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK",
+                      "data": {
+                        "registerToken": "8e652448c9474086b887a78201b897dd"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/accounts/verify-invitation-token": {
+      "post": {
+        "tags": [
+          "계정 등록"
+        ],
+        "summary": "이메일 초대 토큰 검증",
+        "description": "이메일 계정으로 초대 시 전달받은 초대 토큰을 검증하여 회원 가입 토큰을 발급받는다.",
+        "operationId": "account-register-controller-test/check_verify-invitation-token",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api-v1-accounts-verify-invitation-token573710538"
+              },
+              "examples": {
+                "account-register-controller-test/check_verify-invitation-token": {
+                  "value": {
+                    "b64InvitationToken": "MDRiMGMxZmUzYzUzNGIzMmFjMjQ2ZGU0ZWFiNmU0OTU="
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-accounts-verify-invitation-token1652252620"
+                },
+                "examples": {
+                  "account-register-controller-test/check_verify-invitation-token": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK",
+                      "data": {
+                        "accountType": "PLACE_GROUP_ADMIN",
+                        "email": "placegroupadmin@suprema.co.kr",
+                        "registerToken": "7ebf5575f6e34fbb9c4008e74b56595e"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/health-auth": {
+      "get": {
+        "tags": [
+          "헬스 체크"
+        ],
+        "summary": "인증 서버 헬스 체크",
+        "operationId": "health-controller-test/check_get-auth-server-health",
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-sp-template-email-1926437492"
+                },
+                "examples": {
+                  "health-controller-test/check_get-auth-server-health": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/references/account-server-error-codes": {
+      "get": {
+        "tags": [
+          "에러 코드 관리"
+        ],
+        "summary": "계정 서버 에러 코드 목록 조회",
+        "operationId": "reference-controller-test/check_get-error-code",
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1-references-account-server-error-codes1375432013"
+                },
+                "examples": {
+                  "reference-controller-test/check_get-error-code": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK",
+                      "data": [
+                        {
+                          "enumName": "InternalServerError",
+                          "code": "e1000",
+                          "message": "InternalServerError"
+                        },
+                        {
+                          "enumName": "PermissionDenied",
+                          "code": "e1001",
+                          "message": "PermissionDenied"
+                        },
+                        {
+                          "enumName": "NotSupport",
+                          "code": "e1002",
+                          "message": "NotSupport"
+                        },
+                        {
+                          "enumName": "InvalidFormat",
+                          "code": "e1003",
+                          "message": "InvalidFormat"
+                        },
+                        {
+                          "enumName": "JsonParseError",
+                          "code": "e1004",
+                          "message": "JsonParseError"
+                        },
+                        {
+                          "enumName": "MethodArgumentNotValid",
+                          "code": "e1005",
+                          "message": "MethodArgumentNotValid"
+                        },
+                        {
+                          "enumName": "BadRequest",
+                          "code": "e1006",
+                          "message": "BadRequest"
+                        },
+                        {
+                          "enumName": "ResourceNotExists",
+                          "code": "e1007",
+                          "message": "ResourceNotExists"
+                        },
+                        {
+                          "enumName": "MethodArgumentTypeMismatch",
+                          "code": "e1008",
+                          "message": "MethodArgumentTypeMismatch"
+                        },
+                        {
+                          "enumName": "MissingRequestHeader",
+                          "code": "e1009",
+                          "message": "MissingRequestHeader"
+                        },
+                        {
+                          "enumName": "AccountNotExist",
+                          "code": "a1000",
+                          "message": "AccountNotExist"
+                        },
+                        {
+                          "enumName": "AccountAlreadyExists",
+                          "code": "a1001",
+                          "message": "AccountAlreadyExists"
+                        },
+                        {
+                          "enumName": "AccountAuthCodeInvalid",
+                          "code": "a1002",
+                          "message": "AccountAuthCodeInvalid"
+                        },
+                        {
+                          "enumName": "AccountInfoNotMatched",
+                          "code": "a1003",
+                          "message": "AccountInfoNotMatched"
+                        },
+                        {
+                          "enumName": "AccountRegisterAuthCodeCountExceed",
+                          "code": "a1004",
+                          "message": "AccountRegisterAuthCodeCountExceed"
+                        },
+                        {
+                          "enumName": "AccountRegisterAuthCodeNotMatched",
+                          "code": "a1005",
+                          "message": "AccountRegisterAuthCodeNotMatched"
+                        },
+                        {
+                          "enumName": "AccountRegisterFail",
+                          "code": "a1006",
+                          "message": "AccountRegisterFail"
+                        },
+                        {
+                          "enumName": "AccountRegisterTokenExpired",
+                          "code": "a1007",
+                          "message": "AccountRegisterTokenExpired"
+                        },
+                        {
+                          "enumName": "AccountRegisterTokenNotExists",
+                          "code": "a1008",
+                          "message": "AccountRegisterTokenNotExists"
+                        },
+                        {
+                          "enumName": "AccountRegisterTokenNotMatched",
+                          "code": "a1009",
+                          "message": "AccountRegisterTokenNotMatched"
+                        },
+                        {
+                          "enumName": "AccountRefreshTokenNotExists",
+                          "code": "a1010",
+                          "message": "AccountRefreshTokenNotExists"
+                        },
+                        {
+                          "enumName": "AccountRefreshTokenExpired",
+                          "code": "a1011",
+                          "message": "AccountRefreshTokenExpired"
+                        },
+                        {
+                          "enumName": "AccountAuthCodeTooManyTry",
+                          "code": "a1012",
+                          "message": "AccountAuthCodeTooManyTry"
+                        },
+                        {
+                          "enumName": "AccountInactive",
+                          "code": "a1013",
+                          "message": "AccountInactive"
+                        },
+                        {
+                          "enumName": "AccountPasswordLocked",
+                          "code": "a1014",
+                          "message": "AccountPasswordLocked"
+                        },
+                        {
+                          "enumName": "AccountStatusInvalid",
+                          "code": "a1015",
+                          "message": "AccountStatusInvalid"
+                        },
+                        {
+                          "enumName": "AccountSMSTooManySend",
+                          "code": "a1016",
+                          "message": "AccountSMSTooManySend"
+                        },
+                        {
+                          "enumName": "AccountAuthCodeExpired",
+                          "code": "a1017",
+                          "message": "AccountAuthCodeExpired"
+                        },
+                        {
+                          "enumName": "AccountPasswordStrengthTooWeak",
+                          "code": "a1018",
+                          "message": "AccountPasswordStrengthTooWeak"
+                        },
+                        {
+                          "enumName": "AccountPasswordRegexNotMatched",
+                          "code": "a1019",
+                          "message": "AccountPasswordRegexNotMatched"
+                        },
+                        {
+                          "enumName": "AccountNewPasswordMustBeDifferentOldPassword",
+                          "code": "a1020",
+                          "message": "AccountNewPasswordMustBeDifferentOldPassword"
+                        },
+                        {
+                          "enumName": "AccountPasswordResetAuthCodeInvalid",
+                          "code": "a1021",
+                          "message": "AccountPasswordResetAuthCodeInvalid"
+                        },
+                        {
+                          "enumName": "AccountPasswordResetAuthCodeExpired",
+                          "code": "a1022",
+                          "message": "AccountPasswordResetAuthCodeExpired"
+                        },
+                        {
+                          "enumName": "AccountPasswordResetTokenInvalid",
+                          "code": "a1023",
+                          "message": "AccountPasswordResetTokenInvalid"
+                        },
+                        {
+                          "enumName": "AccountPasswordResetTokenExpired",
+                          "code": "a1024",
+                          "message": "AccountPasswordResetTokenExpired"
+                        },
+                        {
+                          "enumName": "AccountPasswordResetAuthCodeExceedMaxCount",
+                          "code": "a1025",
+                          "message": "AccountPasswordResetAuthCodeExceedMaxCount"
+                        },
+                        {
+                          "enumName": "AccountPortraitNotSupportType",
+                          "code": "a1026",
+                          "message": "AccountPortraitNotSupportType"
+                        },
+                        {
+                          "enumName": "AccountPortraitFileMaxSizeExceed",
+                          "code": "a1027",
+                          "message": "AccountPortraitFileMaxSizeExceed"
+                        },
+                        {
+                          "enumName": "TokenInvalid",
+                          "code": "a1028",
+                          "message": "TokenInvalid"
+                        },
+                        {
+                          "enumName": "AccountPasswordContainsRepeat3TimesCharacters",
+                          "code": "a1029",
+                          "message": "AccountPasswordContainsRepeat3TimesCharacters"
+                        },
+                        {
+                          "enumName": "AccountTermsAgreeNotAgree",
+                          "code": "a1030",
+                          "message": "AccountTermsAgreeNotAgree"
+                        },
+                        {
+                          "enumName": "AccountDeleteReserveException",
+                          "code": "a1031",
+                          "message": "AccountDeleteReserveException"
+                        },
+                        {
+                          "enumName": "AccountTwoFactorTooManyTryException",
+                          "code": "a1032",
+                          "message": "AccountTwoFactorTooManyTryException"
+                        },
+                        {
+                          "enumName": "AccountTwoFactorResendTokenInvalidException",
+                          "code": "a1033",
+                          "message": "AccountTwoFactorResendTokenInvalidException"
+                        },
+                        {
+                          "enumName": "AccountRegisterableCountryCodeAlreadyExists",
+                          "code": "a1034",
+                          "message": "AccountRegisterableCountryCodeAlreadyExists"
+                        },
+                        {
+                          "enumName": "AccountPhoneNumberMismatchException",
+                          "code": "a1035",
+                          "message": " AccountPhoneNumberMismatchException"
+                        },
+                        {
+                          "enumName": "AccountRegisterFailCauseOtherTypeAccountAlreadyExistsException",
+                          "code": "a1036",
+                          "message": " AccountRegisterFailCauseOtherTypeAccountAlreadyExistsException"
+                        },
+                        {
+                          "enumName": "AccountPasswordResetTemporarilyNotSupported",
+                          "code": "a1037",
+                          "message": "AccountPasswordResetTemporarilyNotSupported"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuthJWT": []
+          }
+        ]
+      }
+    },
+    "/v1/service/countries": {
+      "get": {
+        "tags": [
+          "__TODO__"
+        ],
+        "summary": "__TODO__",
+        "description": "__TODO__",
+        "operationId": "country-controller-test/check_find-all-countries",
+        "parameters": [
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "countryCode,asc | countryCode,desc | countryName,asc | countryName,desc |countryEnglishName,asc | countryEnglishName,desc",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-service-countries483526701"
+                },
+                "examples": {
+                  "country-controller-test/check_find-all-countries": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK",
+                      "data": [
+                        {
+                          "countryCode": "KR",
+                          "countryName": "대한 민국",
+                          "countryEnglishName": "South Korea",
+                          "nationalNumber": "+82"
+                        },
+                        {
+                          "countryCode": "JP",
+                          "countryName": "일본",
+                          "countryEnglishName": "Japan",
+                          "nationalNumber": "+81"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/sp/service/countries": {
+      "get": {
+        "tags": [
+          "__TODO__"
+        ],
+        "summary": "__TODO__",
+        "description": "__TODO__",
+        "operationId": "service-provider-controller-test/check_get-account-countries",
+        "parameters": [
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "countryCode,asc | countryCode,desc | countryName,asc | countryName,desc |countryEnglishName,asc | countryEnglishName,desc",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "JWT AccessToken",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0dGMiOiJhYyIsImR0YyI6Im1hIiwiZXhwIjoxNzYzMzQ4MTY2LCJyaWMiOjEsImlhdCI6MTc2MzM0NDU2Nn0.qSLXzmzX8lHMvyBsLliRTB1Su0M9yW0FhcVxE0a-ezE"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-service-countries483526701"
+                },
+                "examples": {
+                  "service-provider-controller-test/check_get-account-countries": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK",
+                      "data": [
+                        {
+                          "countryCode": "KR",
+                          "countryName": "대한 민국",
+                          "countryEnglishName": "South Korea",
+                          "nationalNumber": "+82"
+                        },
+                        {
+                          "countryCode": "JP",
+                          "countryName": "일본",
+                          "countryEnglishName": "Japan",
+                          "nationalNumber": "+81"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuthJWT": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "__TODO__"
+        ],
+        "summary": "__TODO__",
+        "description": "__TODO__",
+        "operationId": "service-provider-controller-test/check_create-account-countries",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "JWT AccessToken",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0dGMiOiJhYyIsImR0YyI6Im1hIiwiZXhwIjoxNzYzMzQ4MTY2LCJyaWMiOjIsImlhdCI6MTc2MzM0NDU2Nn0.vB09WgvLwWL4gF5NhEjOVS7rxI1p4FLdJkTeU3UczVY"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api-v1-sp-service-countries944824780"
+              },
+              "examples": {
+                "service-provider-controller-test/check_create-account-countries": {
+                  "value": {
+                    "countryCode": "KR",
+                    "countryName": "대한 민국",
+                    "countryEnglishName": "South Korea",
+                    "nationalNumber": "+82",
+                    "smsProviderType": "MS_TEAMS_CHANNEL"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-sp-service-countries-1204239660"
+                },
+                "examples": {
+                  "service-provider-controller-test/check_create-account-countries": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK",
+                      "data": {
+                        "countryCode": "KR",
+                        "countryName": "대한 민국",
+                        "countryEnglishName": "South Korea",
+                        "nationalNumber": "+82"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuthJWT": []
+          }
+        ]
+      }
+    },
+    "/v1/sp/service/countries/{countryCode}": {
+      "delete": {
+        "tags": [
+          "__TODO__"
+        ],
+        "summary": "__TODO__",
+        "description": "__TODO__",
+        "operationId": "service-provider-controller-test/check_delete-account-countries",
+        "parameters": [
+          {
+            "name": "countryCode",
+            "in": "path",
+            "description": "국가 코드",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "JWT AccessToken",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0dGMiOiJhYyIsImR0YyI6Im1hIiwiZXhwIjoxNzYzMzQ4MTY3LCJyaWMiOjYsImlhdCI6MTc2MzM0NDU2N30.bVF44d7Wj1i5AwCV7wtBENWzRxsAO_pOum4NcnOoLIM"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-sp-template-email-1926437492"
+                },
+                "examples": {
+                  "service-provider-controller-test/check_delete-account-countries": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuthJWT": []
+          }
+        ]
+      }
+    },
+    "/v1/sp/template-email": {
+      "get": {
+        "tags": [
+          "__TODO__"
+        ],
+        "summary": "__TODO__",
+        "description": "__TODO__",
+        "operationId": "service-provider-controller-test/check_get-awsses-template-email",
+        "parameters": [
+          {
+            "name": "templateType",
+            "in": "query",
+            "description": "ACCOUNT_REGISTER_TOKEN | UNREGISTER_ACCOUNT_INVITE | REGISTER_ACCOUNT_INVITE | ACCOUNT_LOGIN_TWO_FACTOR_TOKEN | ACCOUNT_PASSWORD_RESET_TOKEN | DOOR_ACCESS_DYNAMIC_QR",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "domainType",
+            "in": "query",
+            "description": "DEV | STAGE | PROD",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "languageCode",
+            "in": "query",
+            "description": "KO | EN | JA",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "JWT AccessToken",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0dGMiOiJhYyIsImR0YyI6Im1hIiwiZXhwIjoxNzYzMzQ4MTY3LCJyaWMiOjUsImlhdCI6MTc2MzM0NDU2N30.p5hSGCdEH2evvdTq8GxzJdVb_IO3h6u9aRaB0RoV1Sg"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-sp-template-email-1812479557"
+                },
+                "examples": {
+                  "service-provider-controller-test/check_get-awsses-template-email": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK",
+                      "data": {
+                        "templateType": "ACCOUNT_LOGIN_TWO_FACTOR_TOKEN",
+                        "domainType": "PROD",
+                        "languageCode": "EN",
+                        "template": "template data"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuthJWT": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "__TODO__"
+        ],
+        "summary": "__TODO__",
+        "description": "__TODO__",
+        "operationId": "service-provider-controller-test/check_",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "JWT AccessToken",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0dGMiOiJhYyIsImR0YyI6Im1hIiwiZXhwIjoxNzYzMzQ4MTY2LCJyaWMiOjMsImlhdCI6MTc2MzM0NDU2Nn0.WNJw1QntWDiUB4KXGEC8Yj2dDt52srJetMLg_qUDT4Q"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/api-v1-sp-template-email-1266957516"
+              },
+              "examples": {
+                "service-provider-controller-test/check_create-awsses-template-email": {
+                  "value": {
+                    "templateType": "ACCOUNT_LOGIN_TWO_FACTOR_TOKEN",
+                    "domainType": "PROD",
+                    "languageCode": "EN",
+                    "b64Subject": "Q0xVZSDshJzruYTsiqQg7J247KadIOuyiO2YuA==",
+                    "b64Html": "Q0xVZSDshJzruYTsiqQg7J247KadIOuyiO2YuOuKlCB7e3R3b0ZhY3RvclRva2VufX0g7J6F64uI64ukLgp7e3R3b0ZhY3RvckV4cGlyZWRBdEVwb2NoTWlsbGlTZWN9fSDsi5zqsITquYzsp4Ag7Jyg7ZqoIO2VqeuLiOuLpC4="
+                  }
+                },
+                "service-provider-controller-test/check_update-awsses-template-email": {
+                  "value": {
+                    "templateType": "ACCOUNT_LOGIN_TWO_FACTOR_TOKEN",
+                    "domainType": "PROD",
+                    "languageCode": "EN",
+                    "b64Subject": "Q0xVZSDshJzruYTsiqQg7J247KadIOuyiO2YuA==",
+                    "b64Html": "Q0xVZSDshJzruYTsiqQg7J247KadIOuyiO2YuOuKlCB7e3R3b0ZhY3RvclRva2VufX0g7J6F64uI64ukLgp7e3R3b0ZhY3RvckV4cGlyZWRBdEVwb2NoTWlsbGlTZWN9fSDsi5zqsITquYzsp4Ag7Jyg7ZqoIO2VqeuLiOuLpC4="
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-sp-template-email-1926437492"
+                },
+                "examples": {
+                  "service-provider-controller-test/check_create-awsses-template-email": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK"
+                    }
+                  },
+                  "service-provider-controller-test/check_update-awsses-template-email": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuthJWT": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "__TODO__"
+        ],
+        "summary": "__TODO__",
+        "description": "__TODO__",
+        "operationId": "service-provider-controller-test/check_del-awsses-template-email",
+        "parameters": [
+          {
+            "name": "templateType",
+            "in": "query",
+            "description": "ACCOUNT_REGISTER_TOKEN | UNREGISTER_ACCOUNT_INVITE | REGISTER_ACCOUNT_INVITE | ACCOUNT_LOGIN_TWO_FACTOR_TOKEN | ACCOUNT_PASSWORD_RESET_TOKEN | DOOR_ACCESS_DYNAMIC_QR",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "domainType",
+            "in": "query",
+            "description": "DEV | STAGE | PROD",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "languageCode",
+            "in": "query",
+            "description": "KO | EN | JA",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "JWT AccessToken",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0dGMiOiJhYyIsImR0YyI6Im1hIiwiZXhwIjoxNzYzMzQ4MTY3LCJyaWMiOjcsImlhdCI6MTc2MzM0NDU2N30.k5HNN9noALELBOqq8SsDkmMuELL4zgn0ik753csn1Eo"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api-v1-sp-template-email-1926437492"
+                },
+                "examples": {
+                  "service-provider-controller-test/check_del-awsses-template-email": {
+                    "value": {
+                      "code": 200,
+                      "status": true,
+                      "message": "OK"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuthJWT": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "internal-v1-accounts-login-email835046085": {
+        "type": "object",
+        "properties": {
+          "password": {
+            "type": "string",
+            "description": "패스워드"
+          },
+          "authDeviceType": {
+            "type": "string",
+            "description": "로그인 디바이스 타입, MOBILE_APP | WEB_BROWSER | SUPREMA_DEVICE"
+          },
+          "email": {
+            "type": "string",
+            "description": "이메일"
+          }
+        },
+        "required": [
+          "password",
+          "authDeviceType",
+          "email"
+        ]
+      },
+      "api-v1-accounts-remove-749703150": {
+        "type": "object",
+        "properties": {
+          "detail": {
+            "type": "string",
+            "description": "상세 사유"
+          },
+          "reasonType": {
+            "type": "string",
+            "description": "탈퇴 유형: CHANGE_PHONE_NUMBER | LEAVE_JOB | ETC"
+          }
+        },
+        "required": [
+          "reasonType"
+        ]
+      },
+      "api-v1-accounts-passwords-reset-code941861478": {
+        "type": "object",
+        "properties": {
+          "phone": {
+            "type": "string",
+            "description": "휴대전화 번호, 휴대전화 번호로 가입시 필수"
+          },
+          "countryCode": {
+            "type": "string",
+            "description": "국가코드 | kr, 휴대전화 번호로 가입시 필수"
+          },
+          "email": {
+            "type": "string",
+            "description": "이메일로 가입시 필수"
+          }
+        }
+      },
+      "api-v1-accounts-refresh-token351339704": {
+        "type": "object",
+        "properties": {
+          "refreshToken": {
+            "type": "string",
+            "description": "Refresh Token"
+          }
+        },
+        "required": [
+          "refreshToken"
+        ]
+      },
+      "api-v1-accounts-passwords-reset-token96683145": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "description": "API response code"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "accountStatus": {
+                "type": "string",
+                "description": "account status"
+              },
+              "phone": {
+                "type": "string",
+                "description": "휴대전화 번호로 가입한 경우 필수."
+              },
+              "countryCode": {
+                "type": "string",
+                "description": "휴대전화 번호로 가입한 경우 필수"
+              },
+              "accountType": {
+                "type": "string",
+                "description": "account type"
+              },
+              "passwordResetToken": {
+                "type": "string",
+                "description": "account passwordResetToken"
+              },
+              "email": {
+                "type": "string",
+                "description": "이메일로 가입한 경우 필수"
+              }
+            },
+            "required": [
+              "accountStatus",
+              "accountType",
+              "passwordResetToken"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "description": "API response message"
+          },
+          "status": {
+            "type": "boolean",
+            "description": "API response status"
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "api-v1-accounts-passwords-token-valid-997857266": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "이메일"
+          },
+          "token": {
+            "type": "string",
+            "description": "토큰"
+          }
+        },
+        "required": [
+          "email",
+          "token"
+        ]
+      },
+      "api-v1-sp-template-email-1812479557": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "description": "API response code"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "template": {
+                "type": "string",
+                "description": "aws ses template 데이터 반환"
+              },
+              "templateType": {
+                "type": "string",
+                "description": "ACCOUNT_REGISTER_TOKEN | UNREGISTER_ACCOUNT_INVITE | REGISTER_ACCOUNT_INVITE | ACCOUNT_LOGIN_TWO_FACTOR_TOKEN | ACCOUNT_PASSWORD_RESET_TOKEN | DOOR_ACCESS_DYNAMIC_QR"
+              },
+              "domainType": {
+                "type": "string",
+                "description": "DEV | REAL"
+              },
+              "languageCode": {
+                "type": "string",
+                "description": "KO | EN | JA"
+              }
+            },
+            "required": [
+              "template",
+              "templateType",
+              "domainType",
+              "languageCode"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "description": "API response message"
+          },
+          "status": {
+            "type": "boolean",
+            "description": "API response status"
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "internal-v1-accounts-login-email1979003640": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "description": "API response code"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "accountStatus": {
+                "type": "string",
+                "description": "계정 상태"
+              },
+              "twoFactor": {
+                "type": "object",
+                "properties": {
+                  "expiredAt": {
+                    "type": "number",
+                    "description": "2FA 인증 토큰의 유효시간"
+                  },
+                  "methodType": {
+                    "type": "string",
+                    "description": "2FA 인증 토큰이 전달된 방법 (EMAIL)"
+                  },
+                  "resendToken": {
+                    "type": "string",
+                    "description": "2FA 재전송 토큰"
+                  },
+                  "resendTokenRemainCount": {
+                    "type": "number",
+                    "description": "2FA 재전송 가능 수"
+                  }
+                },
+                "description": "BUSINESS_PROVIDER | SERVICE_OPERATOR | SERVICE_PROVIDER | BRANCH_ADMIN | DISTRIBUTOR_ADMIN | PLACE_GROUP_ADMIN 경우에는 2FA 인증이 필요합니다. | VISITOR_BUILDING_ADMIN | VISITOR_COMPANY_ADMIN | VISITOR_HOST"
+              },
+              "accountId": {
+                "type": "number",
+                "description": "계정 ID"
+              },
+              "phone": {
+                "type": "string",
+                "description": "account phone"
+              },
+              "countryCode": {
+                "type": "string",
+                "description": "account countryCode"
+              },
+              "accountType": {
+                "type": "string",
+                "description": "계정 유형: BUSINESS_OWNER | BUSINESS_PROVIDER | SERVICE_PROVIDER | SUPREMA_MANUFACTURE | SERVICE_OPERATOR | USER | BRANCH_ADMIN | DISTRIBUTOR_ADMIN | PLACE_GROUP_ADMIN | VISITOR_BUILDING_ADMIN | VISITOR_COMPANY_MEMBER | VISITOR_MEMBER"
+              },
+              "name": {
+                "type": "string",
+                "description": "account name"
+              },
+              "accessToken": {
+                "type": "string",
+                "description": "JWT AccessToken(2FA 인증이 걸려있는 경우에는 optional)"
+              },
+              "email": {
+                "type": "string",
+                "description": "email"
+              },
+              "refreshToken": {
+                "type": "string",
+                "description": "JWT RefreshToken(2FA 인증이 걸려있는 경우에는 optional)"
+              }
+            },
+            "required": [
+              "accountStatus",
+              "accountId",
+              "accountType",
+              "name",
+              "email"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "description": "API response message"
+          },
+          "status": {
+            "type": "boolean",
+            "description": "API response status"
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "api-v1-accounts-refresh-token1152053861": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "description": "API response code"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "refreshToken": {
+                "type": "string",
+                "description": "갱신된 Refresh Token"
+              }
+            },
+            "required": [
+              "refreshToken"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "description": "API response message"
+          },
+          "status": {
+            "type": "boolean",
+            "description": "API response status"
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "api-v1-sp-template-email-1266957516": {
+        "type": "object",
+        "properties": {
+          "b64Subject": {
+            "type": "string",
+            "description": "base64 인코딩된 이메일 제목"
+          },
+          "templateType": {
+            "type": "string",
+            "description": "ACCOUNT_REGISTER_TOKEN | UNREGISTER_ACCOUNT_INVITE | REGISTER_ACCOUNT_INVITE | ACCOUNT_LOGIN_TWO_FACTOR_TOKEN | ACCOUNT_PASSWORD_RESET_TOKEN | DOOR_ACCESS_DYNAMIC_QR"
+          },
+          "domainType": {
+            "type": "string",
+            "description": "DEV | STAGE | PROD"
+          },
+          "b64Html": {
+            "type": "string",
+            "description": "base64 인코딩된 이메일 내용"
+          },
+          "languageCode": {
+            "type": "string",
+            "description": "EN, KO, JA"
+          }
+        },
+        "required": [
+          "b64Subject",
+          "templateType",
+          "domainType",
+          "b64Html",
+          "languageCode"
+        ]
+      },
+      "api-v1-accounts-passwords-send-token-272417006": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "이메일"
+          }
+        },
+        "required": [
+          "email"
+        ]
+      },
+      "internal-v1-devices-access-token-572708914": {
+        "type": "object",
+        "properties": {
+          "refreshToken": {
+            "type": "string",
+            "description": "refreshToken"
+          }
+        },
+        "required": [
+          "refreshToken"
+        ]
+      },
+      "api-v1-accounts-logout-1239411016": {
+        "type": "object",
+        "properties": {
+          "refreshToken": {
+            "type": "string",
+            "description": "해당 장치에서 사용중인 refreshToken"
+          }
+        },
+        "required": [
+          "refreshToken"
+        ]
+      },
+      "api-v1-sp-service-countries944824780": {
+        "type": "object",
+        "properties": {
+          "countryEnglishName": {
+            "type": "string",
+            "description": "국가 코드"
+          },
+          "nationalNumber": {
+            "type": "string",
+            "description": "국가명"
+          },
+          "countryCode": {
+            "type": "string",
+            "description": "국가 코드"
+          },
+          "smsProviderType": {
+            "type": "string",
+            "description": "문자발송 서비스 타입, MS_TEAMS_CHANNEL || COOLSMS || AWS_SMS"
+          },
+          "countryName": {
+            "type": "string",
+            "description": "국가명"
+          }
+        },
+        "required": [
+          "countryEnglishName",
+          "nationalNumber",
+          "countryCode",
+          "smsProviderType",
+          "countryName"
+        ]
+      },
+      "api-v1-accounts-verify-code1076241530": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "description": "API response code"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "registerToken": {
+                "type": "string",
+                "description": "register token"
+              }
+            },
+            "required": [
+              "registerToken"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "description": "API response message"
+          },
+          "status": {
+            "type": "boolean",
+            "description": "API response status"
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "api-v1-accounts-login-phone486549215": {
+        "type": "object"
+      },
+      "api-v1-accounts-register1571577011": {
+        "type": "object",
+        "properties": {
+          "password": {
+            "type": "string",
+            "description": "비밀번호"
+          },
+          "termsAgree": {
+            "type": "boolean",
+            "description": "약관 동의 여부"
+          },
+          "name": {
+            "type": "string",
+            "description": "가입자 이름"
+          },
+          "registerToken": {
+            "type": "string",
+            "description": "가입 토큰"
+          }
+        },
+        "required": [
+          "password",
+          "termsAgree",
+          "name",
+          "registerToken"
+        ]
+      },
+      "api-v1-sp-template-email-1926437492": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "description": "API response code"
+          },
+          "message": {
+            "type": "string",
+            "description": "API response message"
+          },
+          "status": {
+            "type": "boolean",
+            "description": "API response status"
+          }
+        }
+      },
+      "api-v1-accounts-684836338": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "변경할 이름"
+          },
+          "portraitBase64": {
+            "type": "string",
+            "description": "바이너리 이미지 데이터를 base64 인코딩 하여 전송. 지원 확장자: .jpeg .jpg .png"
+          }
+        }
+      },
+      "api-v1-accounts-passwords-reset-token291965063": {
+        "type": "object",
+        "properties": {
+          "authCode": {
+            "type": "string",
+            "description": "인증 코드"
+          },
+          "phone": {
+            "type": "string",
+            "description": "휴대전화 번호, 휴대전화 번호로 가입시 필수"
+          },
+          "countryCode": {
+            "type": "string",
+            "description": "국가코드 | kr, 휴대전화 번호로 가입시 필수"
+          },
+          "email": {
+            "type": "string",
+            "description": "이메일로 가입시 필수"
+          }
+        },
+        "required": [
+          "authCode"
+        ]
+      },
+      "api-v1-accounts-passwords-reset-569634005": {
+        "type": "object",
+        "properties": {
+          "phone": {
+            "type": "string",
+            "description": "휴대전화 번호로 가입한 경우 필수"
+          },
+          "countryCode": {
+            "type": "string",
+            "description": "국가코드 | kr, 휴대전화 번호로 가입한 경우 필수"
+          },
+          "newPassword": {
+            "type": "string",
+            "description": "변경할 새로운 패스워드"
+          },
+          "resetToken": {
+            "type": "string",
+            "description": "패스워드 초기화 토큰"
+          },
+          "email": {
+            "type": "string",
+            "description": "이메일로 가입한 경우 필수"
+          }
+        },
+        "required": [
+          "newPassword",
+          "resetToken"
+        ]
+      },
+      "api-v1-accounts-login-two-factor-52711364": {
+        "type": "object",
+        "properties": {
+          "twoFactor": {
+            "type": "string",
+            "description": "2FA 토큰 값"
+          },
+          "authDeviceType": {
+            "type": "string",
+            "description": "로그인 디바이스 타입, MOBILE_APP | WEB_BROWSER"
+          },
+          "email": {
+            "type": "string",
+            "description": "이메일"
+          }
+        },
+        "required": [
+          "twoFactor",
+          "authDeviceType",
+          "email"
+        ]
+      },
+      "api-v1-accounts-login-phone-1614753494": {
+        "type": "object",
+        "properties": {
+          "password": {
+            "type": "string",
+            "description": "패스워드"
+          },
+          "phone": {
+            "type": "string",
+            "description": "휴대전화 번호"
+          },
+          "countryCode": {
+            "type": "string",
+            "description": "국가 코드 | kr "
+          },
+          "authDeviceType": {
+            "type": "string",
+            "description": "로그인 디바이스 타입"
+          }
+        },
+        "required": [
+          "password",
+          "phone",
+          "countryCode",
+          "authDeviceType"
+        ]
+      },
+      "api-v1-accounts-register-323336239": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "description": "API response code"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "accountStatus": {
+                "type": "string",
+                "description": "account status"
+              },
+              "accountId": {
+                "type": "number",
+                "description": "계정 ID"
+              },
+              "phone": {
+                "type": "string",
+                "description": "휴대전화 번호로 가입시 반환"
+              },
+              "countryCode": {
+                "type": "string",
+                "description": "휴대전화 번호로 가입시 반환"
+              },
+              "accountType": {
+                "type": "string",
+                "description": "account type"
+              },
+              "name": {
+                "type": "string",
+                "description": "account name"
+              },
+              "key": {
+                "type": "string",
+                "description": "key 로 가입시 반환"
+              },
+              "email": {
+                "type": "string",
+                "description": "이메일로 가입시 반환"
+              }
+            },
+            "required": [
+              "accountStatus",
+              "accountId",
+              "countryCode",
+              "accountType",
+              "name"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "description": "API response message"
+          },
+          "status": {
+            "type": "boolean",
+            "description": "API response status"
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "api-v1-accounts-verify-1362517851": {
+        "type": "object",
+        "properties": {
+          "phone": {
+            "type": "string",
+            "description": "휴대전화 번호, 휴대전화 번호로 가입시 필수"
+          },
+          "countryCode": {
+            "type": "string",
+            "description": "국가코드 | kr, 휴대전화 번호로 가입시 필수"
+          },
+          "accountType": {
+            "type": "string",
+            "description": "accountType"
+          },
+          "email": {
+            "type": "string",
+            "description": "이메일로 가입시 필수"
+          }
+        },
+        "required": [
+          "phone",
+          "countryCode",
+          "accountType",
+          "email"
+        ]
+      },
+      "api-v1-sp-service-countries-1204239660": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "description": "API response code"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "countryEnglishName": {
+                "type": "string",
+                "description": "국가 영어명"
+              },
+              "nationalNumber": {
+                "type": "string",
+                "description": "국가 번호"
+              },
+              "countryCode": {
+                "type": "string",
+                "description": "국가 코드"
+              },
+              "countryName": {
+                "type": "string",
+                "description": "국가명"
+              }
+            },
+            "required": [
+              "countryEnglishName",
+              "nationalNumber",
+              "countryCode",
+              "countryName"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "description": "API response message"
+          },
+          "status": {
+            "type": "boolean",
+            "description": "API response status"
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "api-v1-accounts-passwords-update-1962078045": {
+        "type": "object",
+        "properties": {
+          "newPassword": {
+            "type": "string",
+            "description": "변경할 패스워드"
+          },
+          "currentPassword": {
+            "type": "string",
+            "description": "현재 패스워드"
+          }
+        },
+        "required": [
+          "newPassword",
+          "currentPassword"
+        ]
+      },
+      "api-v1-accounts-login-two-factor-865942192": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "description": "API response code"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "accountStatus": {
+                "type": "string",
+                "description": "account status"
+              },
+              "accountId": {
+                "type": "number",
+                "description": "계정 ID"
+              },
+              "phone": {
+                "type": "string",
+                "description": "account phone"
+              },
+              "countryCode": {
+                "type": "string",
+                "description": "account countryCode"
+              },
+              "useVisitorService": {
+                "type": "boolean",
+                "description": "방문자 서비스 이용 여부"
+              },
+              "accountType": {
+                "type": "string",
+                "description": "account type"
+              },
+              "name": {
+                "type": "string",
+                "description": "account name"
+              },
+              "isSuperAdmin": {
+                "type": "boolean",
+                "description": "슈퍼 어드민 여부 (SERVICE_PROVIDER, SERVICE_OPERATOR 포함)"
+              },
+              "useAcService": {
+                "type": "boolean",
+                "description": "AC 서비스 이용 여부"
+              },
+              "accessToken": {
+                "type": "string",
+                "description": "JWT AccessToken (2FA 인증이 걸려있는 경우에는 optional)"
+              },
+              "email": {
+                "type": "string",
+                "description": "email"
+              },
+              "refreshToken": {
+                "type": "string",
+                "description": "JWT RefreshToken (2FA 인증이 걸려있는 경우에는 optional)"
+              }
+            },
+            "required": [
+              "accountStatus",
+              "accountId",
+              "useVisitorService",
+              "accountType",
+              "name",
+              "isSuperAdmin",
+              "useAcService",
+              "email"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "description": "API response message"
+          },
+          "status": {
+            "type": "boolean",
+            "description": "API response status"
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "api-v1-accounts-login-two-factor-resend-1473179133": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "description": "API response code"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "expiredAt": {
+                "type": "number",
+                "description": "토큰의 만료 시간(epoch milli sec)"
+              },
+              "resendTokenRemainCount": {
+                "type": "number",
+                "description": "남은 토큰 재전송 수"
+              }
+            },
+            "required": [
+              "expiredAt",
+              "resendTokenRemainCount"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "description": "API response message"
+          },
+          "status": {
+            "type": "boolean",
+            "description": "API response status"
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "api-v1-accounts-login-two-factor-resend-465472078": {
+        "type": "object",
+        "properties": {
+          "resendToken": {
+            "type": "string",
+            "description": "2FA 재전송 토큰"
+          }
+        },
+        "required": [
+          "resendToken"
+        ]
+      },
+      "api-v1-accounts-1602414328": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "description": "API response code"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "accountStatus": {
+                "type": "string",
+                "description": "계정 상태: INACTIVE(계정 비활성화, 관제센터에서 강제 잠금 또는 비정상 행동에 대해 잠금 처리) | ACTIVE(활성화) | AUTH_CODE_LOCKED(인증코드 최대 시도 수 초과)| AUTH_CODE_TOO_MANY_SEND(SMS 로 인증코드를 너무 많이 요청한 경우) | PASSWORD_LOCKED(패스워드 최대 시도 수 초과로 계정 잠김 처리) | PASSWORD_EXPIRED(패스워드 변경 시점을 초과하여 패스워드 기간 만료) | DELETE_RESERVE(삭제 처리 예정인 계정)"
+              },
+              "accountId": {
+                "type": "number",
+                "description": "계정 ID"
+              },
+              "phone": {
+                "type": "string",
+                "description": "account phone"
+              },
+              "countryCode": {
+                "type": "string",
+                "description": "account countryCode"
+              },
+              "accountType": {
+                "type": "string",
+                "description": "계정 타입"
+              },
+              "name": {
+                "type": "string",
+                "description": "account name"
+              },
+              "portraitSignedURL": {
+                "type": "string",
+                "description": "account portrait signed URL"
+              }
+            },
+            "required": [
+              "accountStatus",
+              "accountId",
+              "phone",
+              "countryCode",
+              "accountType",
+              "name"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "description": "API response message"
+          },
+          "status": {
+            "type": "boolean",
+            "description": "API response status"
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "v1-references-account-server-error-codes1375432013": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "description": "API response code"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "description": "에러 코드 (불변)"
+                },
+                "message": {
+                  "type": "string",
+                  "description": "에러 메시지"
+                },
+                "enumName": {
+                  "type": "string",
+                  "description": "enum 이름"
+                }
+              },
+              "required": [
+                "code",
+                "message",
+                "enumName"
+              ]
+            }
+          },
+          "message": {
+            "type": "string",
+            "description": "API response message"
+          },
+          "status": {
+            "type": "boolean",
+            "description": "API response status"
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "api-v1-accounts-343020678": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "description": "API response code"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "accountStatus": {
+                "type": "string",
+                "description": "account status"
+              },
+              "accountId": {
+                "type": "number",
+                "description": "계정 ID"
+              },
+              "phone": {
+                "type": "string",
+                "description": "account phone"
+              },
+              "countryCode": {
+                "type": "string",
+                "description": "account countryCode"
+              },
+              "accountType": {
+                "type": "string",
+                "description": "account type"
+              },
+              "name": {
+                "type": "string",
+                "description": "account name"
+              },
+              "portraitSignedURL": {
+                "type": "string",
+                "description": "account portrait signed URL"
+              }
+            },
+            "required": [
+              "accountStatus",
+              "accountId",
+              "phone",
+              "countryCode",
+              "accountType",
+              "name"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "description": "API response message"
+          },
+          "status": {
+            "type": "boolean",
+            "description": "API response status"
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "api-v1-accounts-verify-invitation-token1652252620": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "description": "API response code"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "accountType": {
+                "type": "string",
+                "description": "accountType"
+              },
+              "registerToken": {
+                "type": "string",
+                "description": "register token"
+              },
+              "email": {
+                "type": "string",
+                "description": "email"
+              }
+            },
+            "required": [
+              "accountType",
+              "registerToken",
+              "email"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "description": "API response message"
+          },
+          "status": {
+            "type": "boolean",
+            "description": "API response status"
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "api-v1-accounts-login-phone925443601": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "description": "API response code"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "accountStatus": {
+                "type": "string",
+                "description": "계정 상태: INACTIVE(계정 비활성화, 관제센터에서 강제 잠금 또는 비정상 행동에 대해 잠금 처리) | ACTIVE(활성화) | AUTH_CODE_LOCKED(인증코드 최대 시도 수 초과)| AUTH_CODE_TOO_MANY_SEND(SMS 로 인증코드를 너무 많이 요청한 경우) | PASSWORD_LOCKED(패스워드 최대 시도 수 초과로 계정 잠김 처리) | PASSWORD_EXPIRED(패스워드 변경 시점을 초과하여 패스워드 기간 만료) | DELETE_RESERVE(삭제 처리 예정인 계정)"
+              },
+              "accountId": {
+                "type": "number",
+                "description": "계정 ID"
+              },
+              "phone": {
+                "type": "string",
+                "description": "account phone"
+              },
+              "countryCode": {
+                "type": "string",
+                "description": "account countryCode"
+              },
+              "useVisitorService": {
+                "type": "boolean",
+                "description": "방문자 서비스 이용 여부"
+              },
+              "accountType": {
+                "type": "string",
+                "description": "계정 유형: BUSINESS_OWNER | BUSINESS_PROVIDER | SERVICE_PROVIDER | SUPREMA_MANUFACTURE | SERVICE_OPERATOR | USER | BRANCH_ADMIN | DISTRIBUTOR_ADMIN | PLACE_GROUP_ADMIN | VISITOR_BUILDING_ADMIN | VISITOR_COMPANY_MEMBER | VISITOR_MEMBER"
+              },
+              "name": {
+                "type": "string",
+                "description": "account name"
+              },
+              "isSuperAdmin": {
+                "type": "boolean",
+                "description": "SUPER ADMIN 여부 (SERVICE_PROVIDER, SERVICE_OPERATOR 포함)"
+              },
+              "useAcService": {
+                "type": "boolean",
+                "description": "AC 서비스 이용 여부"
+              },
+              "accessToken": {
+                "type": "string",
+                "description": "JWT AccessToken"
+              },
+              "refreshToken": {
+                "type": "string",
+                "description": "JWT RefreshToken"
+              }
+            },
+            "required": [
+              "accountStatus",
+              "accountId",
+              "phone",
+              "countryCode",
+              "useVisitorService",
+              "accountType",
+              "name",
+              "isSuperAdmin",
+              "useAcService",
+              "accessToken",
+              "refreshToken"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "description": "API response message"
+          },
+          "status": {
+            "type": "boolean",
+            "description": "API response status"
+          }
+        },
+        "required": [
+          "code",
+          "data",
+          "message",
+          "status"
+        ]
+      },
+      "api-v1-accounts-verify-invitation-token573710538": {
+        "type": "object",
+        "properties": {
+          "b64InvitationToken": {
+            "type": "string",
+            "description": "초대 토큰"
+          }
+        },
+        "required": [
+          "b64InvitationToken"
+        ]
+      },
+      "internal-v1-devices-access-token1779246196": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "description": "API response code"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "accessToken": {
+                "type": "string",
+                "description": "accessToken"
+              }
+            },
+            "required": [
+              "accessToken"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "description": "API response message"
+          },
+          "status": {
+            "type": "boolean",
+            "description": "API response status"
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "api-v1-accounts-passwords-token-valid1917597168": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "description": "API response code"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "result": {
+                "type": "boolean",
+                "description": "result, true(유효함), false(유효하지 않음)"
+              }
+            },
+            "required": [
+              "result"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "description": "API response message"
+          },
+          "status": {
+            "type": "boolean",
+            "description": "API response status"
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "api-v1-accounts-access-token-875527569": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "description": "API response code"
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "accessToken": {
+                "type": "string",
+                "description": "갱신된 Access Token"
+              }
+            },
+            "required": [
+              "accessToken"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "description": "API response message"
+          },
+          "status": {
+            "type": "boolean",
+            "description": "API response status"
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "api-v1-service-countries483526701": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "description": "API response code"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "countryEnglishName": {
+                  "type": "string",
+                  "description": "국가 영어명"
+                },
+                "nationalNumber": {
+                  "type": "string",
+                  "description": "국가 번호"
+                },
+                "countryCode": {
+                  "type": "string",
+                  "description": "국가 코드"
+                },
+                "countryName": {
+                  "type": "string",
+                  "description": "국가명"
+                }
+              },
+              "required": [
+                "countryEnglishName",
+                "nationalNumber",
+                "countryCode",
+                "countryName"
+              ]
+            }
+          },
+          "message": {
+            "type": "string",
+            "description": "API response message"
+          },
+          "status": {
+            "type": "boolean",
+            "description": "API response status"
+          }
+        },
+        "required": [
+          "data"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "bearerAuthJWT": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

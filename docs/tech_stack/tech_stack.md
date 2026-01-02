@@ -1,5 +1,50 @@
 # 기술 스택 (Tech Stack)
 
+## 개요
+
+이 문서는 Flutter 프로젝트의 기술 스택과 아키텍처에 대한 상세 가이드입니다.
+
+### 문서 목적
+
+- 프로젝트에서 사용하는 핵심 라이브러리 및 도구 소개
+- MVVM 아키텍처 패턴과 각 레이어별 책임 정의
+- 코드 작성 시 따라야 할 네이밍 컨벤션 및 규칙 제공
+- 실무에서 바로 활용 가능한 예시 코드 제공
+
+### 대상 독자
+
+- 프로젝트에 새로 합류하는 개발자
+- Flutter 아키텍처를 학습하려는 팀원
+- 코드 리뷰 시 컨벤션 확인이 필요한 경우
+
+### 문서 구성
+
+| 섹션 | 설명 |
+|------|------|
+| [아키텍처 패턴](#아키텍처-패턴) | MVVM 패턴 및 레이어별 책임 |
+| [핵심 라이브러리](#핵심-라이브러리) | 상태 관리, 라우팅, 네트워킹 등 주요 라이브러리 |
+| [권장 추가 라이브러리](#권장-추가-라이브러리) | 로깅, 로컬 저장소, 국제화 등 선택적 라이브러리 |
+| [코드 생성 명령어](#코드-생성-명령어) | build_runner 사용법 |
+| [네이밍 컨벤션](#네이밍-컨벤션) | 파일 및 클래스 명명 규칙 |
+| [API 통신 예시](#api-통신-예시) | Page, ViewModel, Repository, RestClient 예시 |
+| [환경 설정](#환경-설정) | API Base URL 관리 방법 |
+
+### 예시 코드
+
+> 📁 [`examples/`](./examples/) 폴더에 실제 구현 예시가 포함되어 있습니다.
+
+| 파일 | 설명 |
+|------|------|
+| `login_page.dart` | 일반 상태를 사용하는 Page 예시 |
+| `async_login_page.dart` | AsyncValue를 사용하는 Page 예시 |
+| `login_page_vm.dart` | 수동 로딩/에러 처리 ViewModel |
+| `async_login_page_vm.dart` | AsyncNotifier 기반 ViewModel |
+| `auth_repository.dart` | Repository 구현 예시 |
+| `auth_rest_client.dart` | Retrofit RestClient 예시 |
+| `login_request.dart` / `login_response.dart` | JSON 직렬화 모델 예시 |
+
+---
+
 ## 아키텍처 패턴
 
 ### MVVM (Model-View-ViewModel)
@@ -88,32 +133,6 @@ RestClient (Data Source)
 - **[flutter_lints](https://pub.dev/packages/flutter_lints)**: Flutter 권장 린트 규칙
 - **[mockito](https://pub.dev/packages/mockito)**: 테스트용 목 객체 생성
 
-## 폴더 구조
-
-```
-lib/
-├── main.dart                 # 앱 진입점
-├── app/
-│   ├── router/              # go_router 설정
-│   └── theme/               # 테마 설정
-├── core/
-│   ├── constants/           # 상수 정의
-│   ├── utils/               # 유틸리티 함수
-│   └── extensions/          # 확장 메서드
-├── data/
-│   ├── models/              # 데이터 모델 (json_serializable)
-│   ├── repositories/        # Repository 구현
-│   └── datasources/
-│       └── remote/          # RestClient (retrofit)
-├── domain/
-│   └── entities/            # 비즈니스 엔티티
-├── presentation/
-│   ├── pages/               # UI 페이지
-│   ├── viewmodels/          # ViewModel (riverpod)
-│   └── widgets/             # 재사용 가능한 위젯
-└── providers/               # Riverpod 프로바이더 정의
-```
-
 ## 코드 생성 명령어
 
 프로젝트에서 사용하는 코드 생성 명령어:
@@ -122,8 +141,6 @@ lib/
 # 모든 코드 생성 (한 번만 실행)
 flutter pub run build_runner build --delete-conflicting-outputs
 
-# Watch 모드 (개발 중 자동 생성)
-flutter pub run build_runner watch --delete-conflicting-outputs
 
 # 기존 생성 파일 삭제 후 재생성
 flutter pub run build_runner clean
@@ -222,7 +239,9 @@ flutter pub run build_runner build --delete-conflicting-outputs
 
 #### Model 정의 (Equatable + JSON Serializable)
 
-**전체 코드**: [`examples/user_model.dart`](./examples/user_model.dart)
+**전체 코드**:
+- [`examples/login_request.dart`](./examples/login_request.dart) - Request 모델 예시
+- [`examples/login_response.dart`](./examples/login_response.dart) - Response 모델 예시
 
 **주요 특징**:
 - `@JsonSerializable()` 어노테이션으로 JSON 직렬화/역직렬화 자동 생성
