@@ -586,9 +586,9 @@ Branch (지사/브랜치)
 
 ## 버전 정보
 
-- **문서 생성일**: 2026-01-02
-- **프로젝트**: Moon Web (Suprema CLUe 웹 포털)
-- **기술 스택**: Flutter Web, Dart, Riverpod, Retrofit
+- **문서 생성일**: 2026-01-05
+- **작성자**: Claude Code
+- **프로젝트 버전**: v1.0
 
 ---
 

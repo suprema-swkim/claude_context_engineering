@@ -1,4 +1,4 @@
-# 기술 스택 (Tech Stack)
+# 기술 스펙 (Tech Spec)
 
 ## 개요
 

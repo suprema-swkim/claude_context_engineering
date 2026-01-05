@@ -38,11 +38,10 @@ flutter run -d chrome
 ```
 
 ## 참고 문서
-- [PRD](docs/prd.md): 제품 요구사항 정의
-- [기술 스택](docs/tech_stack/tech_stack.md): 상세 아키텍처 및 코드 컨벤션
+- [비즈니스 컨텍스트](docs/business-requirements.md): 서비스/도메인별 비즈니스 요구사항과 배경 설명
+- [기술 명세서](docs/techspec/techspec.md): 주요 기술 사양 및 상세 스펙 문서
 - [개발 용어집](docs/glossary.md): 프로젝트 개발 용어 및 개념 정리
-- [API 명세](docs/api/api.md): API 서버 개요 및 명세 문서
-- [Git 워크플로우](docs/git_workflow.md): 브랜치 전략 및 협업 규칙
+- [구현 계획](docs/plan.md): 전체 구현 계획 및 체크리스트
 
 ## 폴더 구조
 
@@ -59,13 +58,12 @@ lib/
 ├── data/
 │   ├── models/              # 데이터 모델 (json_serializable)
 │   ├── repositories/        # Repository 구현
-│   └── datasources/
-│       └── remote/          # RestClient (retrofit)
-├── domain/
-│   └── entities/            # 비즈니스 엔티티
-├── presentation/
-│   ├── pages/               # UI 페이지
-│   ├── viewmodels/          # ViewModel (riverpod)
-│   └── widgets/             # 재사용 가능한 위젯
-└── providers/               # Riverpod 프로바이더 정의
+│   └── rest_api.dart        # RestClient (retrofit)
+├── views/
+│   ├── pages/               # 페이지별 폴더
+│   │   └── [feature]/       # 기능별 폴더
+│   │       ├── [feature]_page.dart      # UI 페이지
+│   │       ├── [feature]_page_vm.dart   # ViewModel (riverpod)
+│   │       └── widgets/                 # 기능별 위젯
+│   └── widgets/             # 공통 재사용 위젯
 ```
