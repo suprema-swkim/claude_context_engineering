@@ -4,21 +4,36 @@ description: 프로젝트 개발을 시작하는 메인에이전트 명령어
 
 # 🚀 프로젝트 개발 시작 (Main Agent)
 
-이 명령어는 서브에이전트들을 총괄하는 메인에이전트입니다.
-프로젝트의 구현 계획을 분석하고, 단계별 개발을 진행합니다.
+서브에이전트들을 총괄하며 프로젝트 구현 계획을 분석하고 단계별 개발을 진행합니다.
+
+> ⚠️ **중요**: 이 커맨드는 반드시 **Plan Mode**에서 실행되어야 합니다.
+
+---
+
+## 📑 목차
+
+1. [실행 프로세스](#-실행-프로세스)
+2. [서브에이전트 역할](#-서브에이전트-역할)
+3. [참조 문서](#-참조-문서)
+4. [주의사항](#️-주의사항)
 
 ---
 
 ## 📋 실행 프로세스
 
-### Step 1: 구현 계획 분석
-1. `docs/plan.md` 파일을 읽어 전체 구현 계획을 파악합니다.
-2. 최상위 Phase부터 순차적으로 탐색합니다.
-3. 미완료 항목(`[ ]`)이 있는 첫 번째 Phase를 식별합니다.
+### Step 1. 플랜 모드 진입
 
-### Step 2: Phase 선택 확인
-1. 식별된 Phase의 이름과 주요 작업 항목을 사용자에게 제시합니다.
-2. 다음 형식으로 확인을 요청합니다:
+`EnterPlanMode` 도구를 호출하여 플랜 모드로 진입합니다.
+
+### Step 2. 구현 계획 분석
+
+1. `docs/plan.md` 파일을 읽어 전체 구현 계획 파악
+2. 최상위 Phase부터 순차 탐색
+3. 미완료 항목(`[ ]`)이 있는 첫 번째 Phase 식별
+
+### Step 3. Phase 선택 확인
+
+식별된 Phase를 사용자에게 제시하고 확인을 요청합니다:
 
 ```
 📌 다음 개발 Phase를 발견했습니다:
@@ -31,31 +46,26 @@ description: 프로젝트 개발을 시작하는 메인에이전트 명령어
 이 Phase를 진행하시겠습니까? (Y/N)
 ```
 
-3. 사용자가 거부하면 다음 미완료 Phase를 제안하거나 사용자의 선택을 받습니다.
+> 사용자가 거부 시 → 다음 미완료 Phase 제안 또는 사용자 선택 대기
 
-### Step 3: 개발 플랜 수립
-사용자가 승인하면, 해당 Phase에 대한 상세 개발 플랜을 작성합니다:
+### Step 4. 개발 플랜 수립
 
-1. **기술 분석**
-   - 필요한 API 엔드포인트 확인 (`docs/api/` 참조)
-   - 필요한 데이터 모델 정의
-   - 기술 명세 확인 (`docs/techspec/techspec.md` 참조)
+사용자 승인 후, 해당 Phase에 대한 상세 개발 플랜을 작성합니다.
 
-2. **작업 분해**
-   - 세부 작업을 우선순위에 따라 정렬
-   - 각 작업별 담당 서브에이전트 지정:
-     - `1.api_specialist`: API 클라이언트 및 Repository 구현
-     - `2.state_manager`: ViewModel 및 상태 관리 구현
-     - `3.ui_ux_specialist`: UI 페이지 및 위젯 구현
-     - `4.routing_manager`: 라우팅 및 네비게이션 설정
-     - `5.tester`: 테스트 코드 작성
-     - `6.reviewer`: 코드 리뷰 및 품질 검증
+#### 4-1. 기술 분석
+- 필요한 API 엔드포인트 확인 (`docs/api/` 참조)
+- 필요한 데이터 모델 정의
+- 기술 명세 확인 (`docs/techspec/techspec.md` 참조)
 
-3. **의존성 파악**
-   - 작업 간 순서 의존성 명시
-   - 병렬 처리 가능한 작업 식별
+#### 4-2. 작업 분해
+세부 작업을 우선순위에 따라 정렬하고, 담당 서브에이전트를 지정합니다.
 
-4. **플랜 형식**
+#### 4-3. 의존성 파악
+- 작업 간 순서 의존성 명시
+- 병렬 처리 가능한 작업 식별
+
+#### 4-4. 플랜 형식
+
 ```
 📝 개발 플랜: [Phase 이름]
 
@@ -74,52 +84,88 @@ description: 프로젝트 개발을 시작하는 메인에이전트 명령어
 예상 소요: X 단계
 ```
 
-### Step 4: 플랜 확인
-1. 작성된 개발 플랜을 사용자에게 제시합니다.
-2. 다음 형식으로 확인을 요청합니다:
+### Step 5. 플랜 확인
+
+작성된 개발 플랜을 사용자에게 제시하고 승인을 요청합니다:
 
 ```
 위 개발 플랜을 진행하시겠습니까? (Y/N)
 수정이 필요하면 말씀해주세요.
 ```
 
-3. 사용자 피드백에 따라 플랜을 수정하거나 진행합니다.
+### Step 6. 플랜 실행
 
-### Step 5: 플랜 실행
-사용자 승인 후 개발을 진행합니다:
+사용자 승인 후 개발을 진행합니다.
 
-1. 각 작업을 순서대로 실행합니다.
-2. 작업 완료 시 `docs/plan.md`의 해당 항목을 `[x]`로 업데이트합니다.
-3. 주요 마일스톤마다 진행 상황을 사용자에게 보고합니다.
+| 허용 | 금지 |
+|-----|-----|
+| ✅ 플랜 수립 및 작업 분배 | ❌ Write, Edit 등으로 직접 코드 작성 |
+| ✅ 서브에이전트 호출 (Task 도구 사용) | ❌ NotebookEdit 등 파일 수정 도구 사용 |
+| ✅ 진행 상황 모니터링 | |
+| ✅ `docs/plan.md` 업데이트 | |
+
+#### 실행 순서
+
+1. **Task 도구로 서브에이전트 호출**
+   - 각 작업을 담당 서브에이전트에게 할당
+   - 예: `Task(subagent_type='ui-ux-specialist', prompt='...')`
+
+2. **작업 내용 명시**
+   - 구체적인 작업 지시 전달
+   - 필요한 컨텍스트 및 참조 문서 제공
+
+3. **작업 완료 확인**
+   - 서브에이전트 작업 완료 후 `docs/plan.md` 업데이트
+   - 다음 작업으로 진행
+
+4. **마일스톤 보고**
+   - 각 Phase 완료 시 사용자에게 보고
+
+### Step 7. 플랜 모드 종료
+
+모든 작업 완료 후 `ExitPlanMode`로 플랜 모드를 종료합니다.
 
 ---
 
-## 🔗 서브에이전트 참조
+## 🔗 서브에이전트 역할
 
-| 에이전트 | 역할 | 파일 |
-|---------|------|------|
-| API Specialist | RestClient, Repository 구현 | `.claude/agents/1.api_specialist.md` |
-| State Manager | ViewModel, 상태 관리 | `.claude/agents/2.state_manager.md` |
-| UI/UX Specialist | 페이지, 위젯 구현 | `.claude/agents/3.ui_ux_specialist.md` |
-| Routing Manager | 라우팅, 네비게이션 | `.claude/agents/4.routing_manager.md` |
-| Tester | 테스트 코드 작성 | `.claude/agents/5.tester.md` |
-| Reviewer | 코드 리뷰, 품질 검증 | `.claude/agents/6.reviewer.md` |
+| # | 에이전트 | 역할 | 파일 경로 |
+|---|---------|------|----------|
+| 1 | API Specialist | RestClient, Repository 구현 | `.claude/agents/1.api_specialist.md` |
+| 2 | State Manager | ViewModel, 상태 관리 | `.claude/agents/2.state_manager.md` |
+| 3 | UI/UX Specialist | 페이지, 위젯 구현 | `.claude/agents/3.ui_ux_specialist.md` |
+| 4 | Routing Manager | 라우팅, 네비게이션 | `.claude/agents/4.routing_manager.md` |
+| 5 | Tester | 테스트 코드 작성 | `.claude/agents/5.tester.md` |
+| 6 | Reviewer | 코드 리뷰, 품질 검증 | `.claude/agents/6.reviewer.md` |
 
 ---
 
 ## 📚 참조 문서
 
-- **구현 계획**: `docs/plan.md`
-- **비즈니스 요구사항**: `docs/business-requirements.md`
-- **기술 명세**: `docs/techspec/techspec.md`
-- **API 문서**: `docs/api/`
-- **용어집**: `docs/glossary.md`
+| 문서 | 경로 | 설명 |
+|-----|-----|-----|
+| 구현 계획 | `docs/plan.md` | 전체 Phase별 체크리스트 |
+| 비즈니스 요구사항 | `docs/business-requirements.md` | 도메인 및 기능 요구사항 |
+| 기술 명세 | `docs/techspec/techspec.md` | MVVM 패턴, 코딩 컨벤션 |
+| API 문서 | `docs/api/` | 서버별 API 스펙 |
+| 용어집 | `docs/glossary.md` | 프로젝트 용어 정의 |
 
 ---
 
 ## ⚠️ 주의사항
 
-1. 반드시 사용자 확인을 받은 후에만 다음 단계로 진행합니다.
-2. 각 Phase는 순차적으로 완료해야 합니다 (의존성 존재).
-3. 코드 생성 후 `dart run build_runner build --delete-conflicting-outputs` 실행이 필요할 수 있습니다.
-4. 모든 변경사항은 기존 아키텍처 패턴(MVVM)을 준수해야 합니다.
+1. **🚨 메인에이전트는 절대 직접 코드를 작성하지 않습니다!**
+   - 반드시 Task 도구로 서브에이전트에게 작업 할당
+   - 메인에이전트는 오케스트레이터 역할만 수행
+
+2. **사용자 확인 필수**
+   - 각 단계 진행 전 반드시 사용자 승인 획득
+
+3. **순차적 Phase 완료**
+   - 각 Phase는 의존성이 있으므로 순차적으로 완료
+
+4. **코드 생성 명령어**
+   - 필요 시 `dart run build_runner build --delete-conflicting-outputs` 실행
+
+5. **아키텍처 준수**
+   - 모든 변경사항은 MVVM 패턴 준수
