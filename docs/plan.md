@@ -11,7 +11,7 @@
 - [Moon Web 구현 계획](#moon-web-구현-계획)
   - [목차](#목차)
   - [사용 방법](#사용-방법)
-  - [Phase 0: 프로젝트 초기 설정](#phase-0-프로젝트-초기-설정)
+  - [Phase 0: 프로젝트 초기 설정 (완료)](#phase-0-프로젝트-초기-설정-완료)
     - [개발 환경 구축](#개발-환경-구축)
     - [프로젝트 구조 설정](#프로젝트-구조-설정)
   - [Phase 1: 핵심 인프라 구축](#phase-1-핵심-인프라-구축)
@@ -79,32 +79,32 @@
 ## Phase 0: 프로젝트 초기 설정 (완료)
 
 ### 개발 환경 구축
-- [x] Flutter SDK 3.6.1+ 설치 및 검증
-- [x] 필수 의존성 패키지 설치
-  - [x] riverpod (상태 관리)
-  - [x] go_router (라우팅)
-  - [x] dio, retrofit (네트워킹)
-  - [x] json_serializable (직렬화)
-  - [x] build_runner (코드 생성)
-  - [x] equatable (값 비교)
-- [x] 추가 권장 패키지 설치
-  - [x] logger (로깅)
-  - [x] shared_preferences (로컬 저장소)
-  - [x] flutter_secure_storage (보안 저장소)
-  - [x] intl (국제화)
-  - [x] url_launcher (URL 처리)
-  - [x] flutter_svg (SVG 렌더링)
-  - [x] flutter_lints (린트)
-  - [x] mockito (테스트)
+- [ ] Flutter SDK 3.6.1+ 설치 및 검증
+- [ ] 필수 의존성 패키지 설치
+  - [ ] riverpod (상태 관리)
+  - [ ] go_router (라우팅)
+  - [ ] dio, retrofit (네트워킹)
+  - [ ] json_serializable (직렬화)
+  - [ ] build_runner (코드 생성)
+  - [ ] equatable (값 비교)
+- [ ] 추가 권장 패키지 설치
+  - [ ] logger (로깅)
+  - [ ] shared_preferences (로컬 저장소)
+  - [ ] flutter_secure_storage (보안 저장소)
+  - [ ] intl (국제화)
+  - [ ] url_launcher (URL 처리)
+  - [ ] flutter_svg (SVG 렌더링)
+  - [ ] flutter_lints (린트)
+  - [ ] mockito (테스트)
 
 ### 프로젝트 구조 설정
-- [x] MVVM 아키텍처 폴더 구조 생성
-  - [x] lib/app/ (라우터, 테마)
-  - [x] lib/core/ (상수, 유틸리티, 확장)
-  - [x] lib/data/ (모델, 레포지토리, 데이터소스)
-  - [x] lib/views/ (페이지, 뷰모델, 위젯)
-- [x] 코드 컨벤션 및 린트 규칙 설정
-- [x] Git workflow 설정
+- [ ] MVVM 아키텍처 폴더 구조 생성
+  - [ ] lib/app/ (라우터, 테마)
+  - [ ] lib/core/ (상수, 유틸리티, 확장)
+  - [ ] lib/data/ (모델, 레포지토리, 데이터소스)
+  - [ ] lib/views/ (페이지, 뷰모델, 위젯)
+- [ ] 코드 컨벤션 및 린트 규칙 설정
+- [ ] Git workflow 설정
 
 ---
 
@@ -347,7 +347,7 @@
 - [ ] INACTIVE (비활성)
 - [ ] AUTH_CODE_LOCKED (인증코드 잠금)
 - [ ] PASSWORD_LOCKED (비밀번호 잠금)
-- [ ] PASSWORD_EXPIRED (비밀번호 만료)
+- [ ] PASSWORD_E PIRED (비밀번호 만료)
 - [ ] DELETE_RESERVE (삭제 예약)
 - [ ] INVITED_SIGNUP (가입 초대)
 
