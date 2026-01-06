@@ -1,5 +1,9 @@
 # 기술 스펙 (Tech Spec)
 
+**관련 문서**: [구현 계획](../plan.md) | [용어집](../glossary.md) | [비즈니스 컨텍스트](../business-requirements.md)
+
+---
+
 ## 개요
 
 이 문서는 Flutter 프로젝트의 기술 스택과 아키텍처에 대한 상세 가이드입니다.
@@ -31,7 +35,7 @@
 
 ### 예시 코드
 
-> 📁 [`examples/`](./examples/) 폴더에 실제 구현 예시가 포함되어 있습니다.
+> [`examples/`](./examples/) 폴더에 실제 구현 예시가 포함되어 있습니다.
 
 | 파일 | 설명 |
 |------|------|
@@ -139,12 +143,11 @@ RestClient (Data Source)
 
 ```bash
 # 모든 코드 생성 (한 번만 실행)
-flutter pub run build_runner build --delete-conflicting-outputs
-
+dart run build_runner build --delete-conflicting-outputs
 
 # 기존 생성 파일 삭제 후 재생성
-flutter pub run build_runner clean
-flutter pub run build_runner build --delete-conflicting-outputs
+dart run build_runner clean
+dart run build_runner build --delete-conflicting-outputs
 ```
 
 ## 네이밍 컨벤션
@@ -165,7 +168,7 @@ flutter pub run build_runner build --delete-conflicting-outputs
 
 ## API 통신 예시
 
-> 📁 모든 예시 코드는 [`examples/`](./examples/) 폴더에서 확인할 수 있습니다.
+> 모든 예시 코드는 [`examples/`](./examples/) 폴더에서 확인할 수 있습니다.
 
 ### Page 사용
 
@@ -261,3 +264,7 @@ flutter pub run build_runner build --delete-conflicting-outputs
 ```bash
 flutter run --dart-define=API_BASE_URL=https://api.example.com
 ```
+
+---
+
+> 이 문서는 프로젝트의 기술 스택과 아키텍처에 대한 상세 가이드입니다.
