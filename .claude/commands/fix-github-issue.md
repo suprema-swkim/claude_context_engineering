@@ -1,4 +1,8 @@
-GitHub 이슈를 분석하고 수정하세요: $ARGUMENTS / 예시 : /fix-github-issue 1234
+---
+description: GitHub 이슈 수정 명령어 /fix-github-issue 1335
+---
+
+GitHub 이슈를 분석하고 수정하세요: $ARGUMENTS
 
 다음 절차를 따르세요:
 
