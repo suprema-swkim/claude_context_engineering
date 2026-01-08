@@ -13,6 +13,7 @@ description: AGENTS.md 설계 및 생성 명령어
 2.  **No Fluff, No Emojis:** 컨텍스트 낭비를 막기 위해 **이모지(🎯, 🚀 등)와 불필요한 서술을 절대 사용하지 마십시오.** 오직 명확하고 간결한 텍스트로만 작성합니다.
 3.  **Central Control & Delegation:** 루트 파일은 "관제탑"이며, 상세 구현은 하위 파일로 "위임"합니다.
 4.  **Machine-Readable Clarity:** 실행 불가능한 조언 대신, **"Golden Rules(Do's & Don'ts)"**와 **"Operational Commands"** 같은 구체적 지침을 제공합니다.
+5.  **Korean Documentation:** 모든 `AGENTS.md` 문서는 **반드시 한글로 작성**합니다. 섹션 제목, 설명, 규칙, 예시 등 모든 내용을 한글로 작성하여 팀 내 가독성과 이해도를 높입니다.
 
 # Execution Protocol (실행 절차)
 
@@ -71,7 +72,37 @@ description: AGENTS.md 설계 및 생성 명령어
 2.  **Overwrite Authority:** 기존 `AGENTS.md`가 있다면 이 베스트 프랙티스 구조로 **덮어쓰기(Overwrite)** 하십시오.
 3.  **Markdown Only:** 생성되는 파일 내용은 유효한 Markdown 문법이어야 하며, 불필요한 설명 없이 코드 블록만 출력하십시오.
 
+# Auto Quality Validation (자동 품질 검증)
+
+생성된 모든 `AGENTS.md` 파일에 대해 다음 검증을 **자동으로 수행**하십시오:
+
+## Required Validation (필수 검증 항목)
+
+-   [ ] **라인 수 검증:** 500라인 미만인가?
+-   [ ] **이모지 검증:** 이모지가 사용되지 않았는가?
+-   [ ] **언어 검증:** 모든 내용이 한글로 작성되었는가?
+-   [ ] **마크다운 검증:** 마크다운 문법이 유효한가?
+
+## Structure Validation (구조 검증)
+
+-   [ ] **필수 섹션 포함:** 프로젝트 컨텍스트, 황금 규칙, 표준 및 참조, 컨텍스트 맵이 모두 포함되었는가?
+-   [ ] **경로 유효성:** 컨텍스트 맵의 상대 경로가 실제 존재하는 폴더를 가리키는가?
+-   [ ] **하위 파일 연결:** 참조된 하위 `AGENTS.md` 파일 경로가 정확한가?
+
+## Content Validation (내용 검증)
+
+-   [ ] **명령어 실행 가능성:** 운영 명령어가 실제 프로젝트에서 실행 가능한가?
+-   [ ] **규칙 적합성:** 황금 규칙이 프로젝트의 실제 제약사항을 반영하는가?
+-   [ ] **중복 제거:** 루트와 하위 파일 간 내용 중복이 최소화되었는가?
+
+## Failure Handling (검증 실패 시 대응)
+
+1.  검증 실패 항목을 명확히 식별합니다.
+2.  해당 항목을 즉시 수정합니다.
+3.  수정 후 재검증을 수행합니다.
+4.  모든 항목 통과 시에만 완료로 간주합니다.
+
 ---
 
-**Command:**
-Analyze the current project immediately and **EXECUTE the creation** of the optimized `./AGENTS.md` system. Ensure **NO EMOJIS** are used to maximize context efficiency.
+**실행 명령:**
+현재 프로젝트를 즉시 분석하고 최적화된 `./AGENTS.md` 시스템을 **즉시 생성(EXECUTE)**하십시오. 컨텍스트 효율성을 극대화하기 위해 **이모지를 사용하지 마십시오.** 모든 문서는 **한글로 작성**하십시오. 생성 완료 후 **자동 품질 검증을 수행**하십시오.
