@@ -50,11 +50,24 @@ description: AGENTS.md 설계 및 생성 명령어
 
 ### 2.1 감지 로직 (생성 기준)
 
-다음과 같은 신호가 감지될 때 별도의 `AGENTS.md`를 생성합니다:
+Flutter 프로젝트 구조에 따라 다음 규칙을 적용합니다:
 
--   **의존성 경계:** `pubspec.yaml` 등이 별도로 존재하는 경우.
--   **프레임워크 경계:** 기술 스택이 전환되는 지점 (예: `Riverpod` 상태관리, `Retrofit` API 통신, `GoRouter` 라우팅).
--   **논리적 경계:** 비즈니스 로직 밀도가 높은 핵심 모듈 (예: `views/pages/auth`, `data/repositories`).
+#### `lib/` 외부 디렉토리
+
+다음 2개의 `AGENTS.md`만 생성합니다:
+
+-   `./AGENTS.md` — 프로젝트 루트 (전체 프로젝트 컨텍스트 및 규칙)
+-   `./assets/AGENTS.md` — 에셋 관리 규칙
+
+#### `lib/` 내부 디렉토리
+
+**하위 폴더가 존재하는 모든 디렉토리**에 `AGENTS.md`를 **무조건 생성**합니다.
+
+-   `lib/app/` — 하위에 `router/`, `theme/` 존재 → `lib/app/AGENTS.md` 생성
+-   `lib/core/` — 하위에 `constants/`, `extensions/`, `utils/` 존재 → `lib/core/AGENTS.md` 생성
+-   `lib/data/` — 하위에 `models/`, `repositories/` 존재 → `lib/data/AGENTS.md` 생성
+-   `lib/views/` — 하위에 `pages/`, `widgets/` 존재 → `lib/views/AGENTS.md` 생성
+-   `lib/views/pages/[feature]/` — 기능별 페이지 폴더는 무조건 생성
 
 ### 2.2 중첩 파일 구조 (필수 섹션)
 
